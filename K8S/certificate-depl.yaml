@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: certificate-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: certificateservice
+  template:
+    metadata:
+      labels:
+        app: certificateservice
+    spec:
+      containers:
+      - name: certificateervice
+        image: javad0098/certificateservice:latest
