@@ -1,0 +1,6 @@
+[*.cs]
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_new_line_before_open_brace = all
