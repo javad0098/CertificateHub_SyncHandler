@@ -13,5 +13,21 @@ spec:
         app: certificateservice
     spec:
       containers:
-      - name: certificateervice
+      - name: certificateservice
         image: javad0098/certificateservice:latest
+
+        # ClusterIP Service for internal communication of CommandService
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: certificates-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: certificateservice
+  ports:
+    - name: certificate-service  # Named port for internal reference
+      protocol: TCP
+      port: 8080         # ClusterIP port for internal communication
+      targetPort: 8080    # The port the container listens on

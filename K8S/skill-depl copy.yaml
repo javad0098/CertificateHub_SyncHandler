@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skillservice-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: skillservice
+  template:
+    metadata:
+      labels:
+        app: skillservice
+    spec:
+      containers:
+      - name: skillservice
+        image: javad0098/skillservice:latest
+
+# ClusterIP Service for internal communication of CommandService
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: skills-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: skillservice
+  ports:
+    - name: skill-service  # Named port for internal reference
+      protocol: TCP
+      port: 8080         # ClusterIP port for internal communication
+      targetPort: 8080    # The port the container listens on

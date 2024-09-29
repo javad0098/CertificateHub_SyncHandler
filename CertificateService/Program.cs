@@ -15,7 +15,6 @@ namespace CertificateService
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>(); 
-                    webBuilder.UseUrls("http://*:80"); // Set the application to listen on port 80
 
                 });
     }

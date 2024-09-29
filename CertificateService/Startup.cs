@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using CertificateService.Data;
+using CertificateService.SyncDataServices.Http;
 
 namespace CertificateService
 {
@@ -14,7 +15,8 @@ namespace CertificateService
         {
             services.AddDbContext<AppDBContext>(opt => 
             opt.UseInMemoryDatabase("InMemory"));
-            
+            services.AddHttpClient<ISkillDataClient, HttpSkillDataClient>();
+
             services.AddScoped<ICertificateRepo, CertificateRepo>();
             services.AddControllers(); // Register MVC controllers
 

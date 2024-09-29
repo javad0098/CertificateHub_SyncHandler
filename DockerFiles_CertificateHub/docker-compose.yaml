@@ -1,0 +1,11 @@
+version: '3'
+services:
+  CertificateService:
+    image: javad0098/certificateservice
+    ports:
+      - "8083:8080"
+
+  SkillService:
+    image: javad0098/skillservice
+    ports:
+      - "8084:8080"
