@@ -6,18 +6,18 @@ using CertificateService.Models;
 using CertificateService.Dtos;
 using CertificateService.SyncDataServices.Http;
 
-namespace CertificateService.Controllers
+namespace CertificatesService.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CertificateController : ControllerBase
+    public class CertificatesController : ControllerBase
     {
         private readonly ISkillDataClient _skillDataClient;
         private readonly IMapper _maper;
         private readonly ICertificateRepo _repository;
-        public CertificateController(ICertificateRepo repository, IMapper maper, ISkillDataClient skillDataClient)
+        public CertificatesController(ICertificateRepo repository, IMapper maper, ISkillDataClient skillDataClient)
         {
-            _skillDataClient=skillDataClient;
+            _skillDataClient = skillDataClient;
             _maper = maper;
             _repository = repository;
         }
@@ -57,11 +57,11 @@ namespace CertificateService.Controllers
             _repository.CreateCertificate(certificate);
             _repository.SaveChenges();
             var certificateReadDto = _maper.Map<CertificateReadDto>(certificate);
-            try 
+            try
             {
-                await  _skillDataClient.SendCertificateToSkill(certificateReadDto);
+                await _skillDataClient.SendCertificateToSkill(certificateReadDto);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"==> could not send synchronously: {ex.Message}");
             }

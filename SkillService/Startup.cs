@@ -9,7 +9,6 @@ namespace SkillService
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(opt => 
@@ -17,7 +16,6 @@ namespace SkillService
             
             services.AddControllers();
 
-            // Add Swagger services
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -30,7 +28,6 @@ namespace SkillService
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -46,17 +43,15 @@ namespace SkillService
                 });
             }
 
-            app.UseHttpsRedirection(); // Redirect HTTP requests to HTTPS
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
             
-            // PrepDB.PrepPopulation(app);
-
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers(); // Map controller routes
+                endpoints.MapControllers();
             });
 
         }

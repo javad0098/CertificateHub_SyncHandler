@@ -8,15 +8,15 @@ namespace SkillService.Controllers
     {
         public CertificatesController()
         {
-            
+
         }
-        
+
         [HttpPost]
-        public ActionResult TestInboundConnection()
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        public IActionResult TestInboundConnection()
         {
-           
-           Console.WriteLine("==> Inbound post # Skill Services ");
-           return Ok("Inbound test of from Certificate controller");
+            Console.WriteLine("==> Inbound post # Skill Services ");
+            return Ok("Inbound test of from Certificate controller");
         }
     }
 }
