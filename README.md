@@ -1,4 +1,4 @@
-Certainly! Here’s the updated `README.md` with the file name corrected to `certificates-depl.yaml`:
+
 
 ```markdown
 # Kubernetes Setup for Certificate Service
