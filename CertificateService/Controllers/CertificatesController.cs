@@ -26,12 +26,10 @@ namespace CertificatesService.Controllers
         public ActionResult<IEnumerable<Certificate>> GetCertificates()
         {
 
-            Console.WriteLine(">> Getting All Platforms");
+            Console.WriteLine(">> Getting All Certificates");
 
-            // Retrieve platforms from the repository
             var certificates = _repository.GetAllCertificates();
 
-            // Map platforms to PlatformReadDto and return the result
             return Ok(_maper.Map<IEnumerable<CertificateReadDto>>(certificates));
         }
 
@@ -40,7 +38,6 @@ namespace CertificatesService.Controllers
         {
 
 
-            // Retrieve platforms from the repository
             var certificate = _repository.GetCertificateById(id);
 
             if (certificate != null)
